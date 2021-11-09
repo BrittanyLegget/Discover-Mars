@@ -65,7 +65,7 @@ const muiTheme = createMuiTheme({
  **/
 
 function Perseverance() {
-  const api_key = "";
+  const api_key = (process.env.REACT_APP_NASA);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
   const [data, setData] = useState();

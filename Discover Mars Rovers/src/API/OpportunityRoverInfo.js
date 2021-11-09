@@ -12,7 +12,7 @@ import Button from "react-bootstrap/Button";
  **/
 
 function OpportunityInfo() {
-  const api_key = "";
+  const api_key = (process.env.REACT_APP_NASA);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
   const [info, setInfo] = useState();
