@@ -59,9 +59,9 @@ function APOD() {
     // No video to embedd, only image
     function onlyImage() {
       return (
-        <>
+        <Container>
           <Image src={apod.hdurl} className="apod-img" alt="" fluid></Image>
-        </>
+        </Container>
       );
     }
 
@@ -95,7 +95,7 @@ function APOD() {
     );
   }
   return (
-    <div className="page-background">
+    <div className={isLoading ? "page-background-loading" : "page-background"}>
       <Container fluid>
         <Row>
           <Col>

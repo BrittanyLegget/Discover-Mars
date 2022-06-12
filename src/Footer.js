@@ -3,7 +3,7 @@ import React from "react";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 
-function Footer(props) {
+function Footer() {
   const [modalShow, setModalShow] = React.useState(false);
 
   // Give credit where credit is due
