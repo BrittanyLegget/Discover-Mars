@@ -34,8 +34,16 @@ function Footer(props) {
             }}
           />
           <br />
-          <h2 className="pers-info-detail-title">Home Page Image</h2>
-          <p>Source: NASA/JPL-Caltech</p>
+          <h2 className="pers-info-detail-title">Developers</h2>
+          <p>
+            Ths website was initially developed by Brittany Legget, Tanya
+            Haddad, and Evan Amaya as a project for Advanced Web Development at
+            Oregon State University
+            <br />
+            Continued development is by Brittany Legget.
+          </p>
+          <h2 className="pers-info-detail-title">Images</h2>
+          <p>Home page image source: NASA/JPL-Caltech</p>
           <h2 className="pers-info-detail-title">NASA APIs</h2>
           <p>
             APOD and Rover data taken from the following specific NASA APIs
@@ -189,10 +197,9 @@ function Footer(props) {
           <a href="https://api.nasa.gov/" target="_blank">
             &#169;NASA API
           </a>
-          &nbsp;&nbsp;&nbsp; Website developed by Brittany Legget, Tanya Haddad,
-          Evan Amaya - CS499 OSU &nbsp;&nbsp;&nbsp;
+
           <a style={{ color: "#007bff" }} onClick={() => setModalShow(true)}>
-            Credits
+            &nbsp;&nbsp;&nbsp; Credits
           </a>
         </Card.Footer>
       </Card>
