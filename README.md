@@ -2,6 +2,8 @@
 
 This app allows users to browse several aspects of the NASA API offerings. There are 5 distinct routes: four for Mars Rover data, and one for general Astronomy.
 
+See the live demo [here](https://discover-mars.uw.r.appspot.com/)
+
 ## General astronomy data
 
 ### APOD API
@@ -27,7 +29,9 @@ General mission info for all Mars rovers is available via a request such as:
 
 ## Our Team
 
-Brittany Legget, Evan Amaya, Tanya Haddad
+This project was initially developed by Brittany Legget, Evan Amaya, and Tanya Haddad.
+
+Continued development by Brittany Legget
 
 ## Run the project
 
