@@ -5,22 +5,13 @@ import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
 import Image from "react-bootstrap/Image";
 import Spinner from "../Components/Spinner";
-
+import "../App.css";
 /**   Astronomy Picture of the Day - https://github.com/nasa/apod-api
  *
- *     Params: API KEY
  *     Returns: APOD Object {copyright,date,explanation,hdulr,media_type,service_version,title,url}
- *
- *
- *     Possible modifications:
- *        entry field for date(YYYY-MM_DD) to get APOD for that day.
- *        input count to get random # of images. Put in a grid?
- *
- *
- *     Not sure how this reacts to video url but could add in protection to just add in video thumbnail and link to video if needed.
  *  */
+
 function APOD() {
-  const key = (process.env.REACT_APP_NASA);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
   const [apod, setApod] = useState();
@@ -35,11 +26,8 @@ function APOD() {
       setIsLoading(true);
       setIsError(false);
 
-      let requestString =
-        "https://api.nasa.gov/planetary/apod?api_key=" + key; // Build query, can add params to extend features
-      //console.log(requestString);                                               //Test date for panoramic &date=2021-03-09, Perseverance landing: &date=2021-02-23  &date=2021-03-15 youtube video
+      let requestString = process.env.REACT_APP_URL + "/apod";
       try {
-        // Same structure as taught in class
         const res = await fetch(requestString, { signal: controller.signal });
         responseBody = await res.json();
       } catch (e) {
@@ -56,7 +44,6 @@ function APOD() {
         setIsLoading(false);
       }
     }
-    //console.log("APOD",apod);
     if (!apod) {
       fetchAPOD();
     }
@@ -69,8 +56,6 @@ function APOD() {
 
   // Helper function to format data
   function FormatAPOD() {
-    console.log(apod);
-    let mediaType = apod.media_type;
     // No video to embedd, only image
     function onlyImage() {
       return (

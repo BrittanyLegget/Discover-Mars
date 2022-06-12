@@ -3,8 +3,7 @@
  */
 
 import React from "react";
-
-import "./spinner.css";
+import "../App.css";
 
 function Spinner({ size, color }) {
   size = size || 12;

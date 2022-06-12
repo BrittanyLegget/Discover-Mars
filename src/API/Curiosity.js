@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import fetch from "isomorphic-unfetch";
 import CuriosityInfo from "./CuriosityRoverInfo";
 import Spinner from "../Components/Spinner";
+
 //Import bootstrap components
 import Carousel from "react-bootstrap/Carousel";
 import Dropdown from "react-bootstrap/Dropdown";
@@ -10,6 +11,7 @@ import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+
 //import date picker
 import { DatePicker } from "@material-ui/pickers";
 import moment from "moment";
@@ -28,11 +30,6 @@ const muiTheme = createMuiTheme({
   },
 
   overrides: {
-    // MuiPickersToolbar: {
-    //   toolbar: {
-    //     backgroundColor: '#CC6A4F',
-    //   },
-    // },
     MuiPickersDay: {
       day: {
         color: "#000",
@@ -44,11 +41,6 @@ const muiTheme = createMuiTheme({
         color: "#D3D3D3",
       },
     },
-    // MuiFormControl: {
-    //   root: {
-    //     color: 'rgb(128,128,128)'
-    //   }
-    // },
     MuiInputBase: {
       input: {
         color: "#CC6A4F",
@@ -57,15 +49,13 @@ const muiTheme = createMuiTheme({
   },
 });
 /** Mars Rover Photo API Docs - https://github.com/chrisccerami/mars-photo-api
- *
- *     Params: API KEY (selected options)
+
  *     Photos by camera / sol available here : https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?api_key=DEMO_KEY&earth_date=<date>
  *     Returns: Photos Array of Photo Objects: {id, sol, camera, img_src, earth_date, rover}
  *
  **/
 
 function Curiosity() {
-  const api_key = (process.env.REACT_APP_NASA);;
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
   const [data, setData] = useState();
@@ -73,6 +63,7 @@ function Curiosity() {
   const [date, setDate] = useState("2012-08-27");
   const [camera, setCamera] = useState("");
   const placeholderImage = "/Curiosity_diagram.png";
+  const currentRover = "curiosity";
 
   useEffect(() => {
     let ignore = false;
@@ -85,16 +76,16 @@ function Curiosity() {
       setIsError(false);
 
       let requestString =
-        "https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?earth_date=" +
+        process.env.REACT_APP_URL +
+        "/rover/" +
+        currentRover +
+        "/" +
         date +
-        "&camera=" +
-        camera +
-        "&api_key=" +
-        api_key; // Build query, can add params to extend features
+        "/" +
+        camera;
 
       try {
-        // Same structure as taught in class
-        const res = await fetch(requestString, { signal: controller.signal });
+        const res = await fetch(requestString);
         responseBody = await res.json();
       } catch (e) {
         if (e instanceof DOMException) {
@@ -110,7 +101,6 @@ function Curiosity() {
         {
           responseBody.photos.length > 0 ? setIsEmpty(false) : setIsEmpty(true);
         }
-        console.log("setting data", responseBody.photos);
         setIsLoading(false);
       }
     }
@@ -128,7 +118,6 @@ function Curiosity() {
   //Handle the dropdown camera selection
   function handleSelect(event) {
     setCamera(event);
-    console.log(event);
     setData();
   }
   //Create dropdown selection for cameras

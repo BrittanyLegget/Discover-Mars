@@ -11,17 +11,19 @@ Displays the Astronomy picture of the day.
 ## Mars data
 
 ### Mars Rover Photo API
+
 There are 4 routes to display photos for each Mars rover:
+
 - Spirit
 - Opportunity
 - Curiosity
-- Perseverance 
+- Perseverance
 
 Each Rover has different mission characteristics and cameras available.
 
 General mission info for all Mars rovers is available via a request such as:
->[https://api.nasa.gov/mars-photos/api/v1/rovers/?api_key=DEMO_KEY](https://api.nasa.gov/mars-photos/api/v1/rovers/?api_key=DEMO_KEY)
 
+> [https://api.nasa.gov/mars-photos/api/v1/rovers/?api_key=DEMO_KEY](https://api.nasa.gov/mars-photos/api/v1/rovers/?api_key=DEMO_KEY)
 
 ## Our Team
 
@@ -46,6 +48,3 @@ Rover page:
 
 APOD page:
 ![APOD](https://user-images.githubusercontent.com/23641129/120083176-b5e31280-c07b-11eb-8d95-fe68ecb0d21f.PNG)
-
-
-

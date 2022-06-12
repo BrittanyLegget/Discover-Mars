@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import fetch from "isomorphic-unfetch";
 import PerseveranceInfo from "./PerseveranceRoverInfo";
 import Spinner from "../Components/Spinner";
+
 //Import bootstrap components
 import Carousel from "react-bootstrap/Carousel";
 import Dropdown from "react-bootstrap/Dropdown";
@@ -10,6 +11,7 @@ import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+
 //import date picker
 import { DatePicker } from "@material-ui/pickers";
 import moment from "moment";
@@ -28,11 +30,6 @@ const muiTheme = createMuiTheme({
   },
 
   overrides: {
-    // MuiPickersToolbar: {
-    //   toolbar: {
-    //     backgroundColor: '#CC6A4F',
-    //   },
-    // },
     MuiPickersDay: {
       day: {
         color: "#000",
@@ -44,11 +41,6 @@ const muiTheme = createMuiTheme({
         color: "#D3D3D3",
       },
     },
-    // MuiFormControl: {
-    //   root: {
-    //     color: 'rgb(128,128,128)'
-    //   }
-    // },
     MuiInputBase: {
       input: {
         color: "#CC6A4F",
@@ -65,7 +57,6 @@ const muiTheme = createMuiTheme({
  **/
 
 function Perseverance() {
-  const api_key = (process.env.REACT_APP_NASA);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
   const [data, setData] = useState();
@@ -74,6 +65,7 @@ function Perseverance() {
   const [camera, setCamera] = useState("");
   const placeholderImage =
     "https://mars.nasa.gov//imgs/2017/10/mars_2020_cameras_labeled_web-full2.jpg";
+  const currentRover = "perseverance";
 
   useEffect(() => {
     let ignore = false;
@@ -86,15 +78,15 @@ function Perseverance() {
       setIsError(false);
 
       let requestString =
-        "https://api.nasa.gov/mars-photos/api/v1/rovers/perseverance/photos?earth_date=" +
+        process.env.REACT_APP_URL +
+        "/rover/" +
+        currentRover +
+        "/" +
         date +
-        "&camera=" +
-        camera +
-        "&api_key=" +
-        api_key; // Build query, can add params to extend features
+        "/" +
+        camera;
 
       try {
-        // Same structure as taught in class
         const res = await fetch(requestString, { signal: controller.signal });
         responseBody = await res.json();
       } catch (e) {
@@ -111,7 +103,6 @@ function Perseverance() {
         {
           responseBody.photos.length > 0 ? setIsEmpty(false) : setIsEmpty(true);
         }
-        console.log("setting data", responseBody.photos);
         setIsLoading(false);
       }
     }
@@ -129,7 +120,6 @@ function Perseverance() {
   //Handle the dropdown camera selection
   function handleSelect(event) {
     setCamera(event);
-    console.log(event);
     setData();
   }
   //Create dropdown selection for cameras

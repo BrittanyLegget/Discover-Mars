@@ -10,14 +10,6 @@ import Curiosity from "./API/Curiosity";
 import Footer from "./Footer";
 import NavBar from "./Components/Navbar";
 
-/** Routes
- * Apod
- * Rovers - Nested: /Spirit  /Opportunity /Curiosity / Perseverance
- * Home
- */
-
-// Navbar design:
-//    Possibly use Tabs? Active tab makes it clear what page. *Polish
 function App() {
   return (
     <>
